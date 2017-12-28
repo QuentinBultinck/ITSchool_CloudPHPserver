@@ -15,8 +15,8 @@
 Route::get("/", function () {
     return redirect("home");
 });
-Route::get("/home", 'RestaurantsController@index')->name("home");
-Route::get("/restaurants/myRestaurant", 'RestaurantsController@myRestaurant')->name("restaurants.myRestaurant");
-Route::post("/restaurants/store", 'RestaurantsController@store')->name("restaurants.store");
+Route::get("/home", 'HomeController@index')->name("home");
+Route::get("/restaurants/myRestaurant", 'RestaurantsController@create')->name("myRestaurant");
+Route::post("/restaurants/store", 'RestaurantsController@store')->name("storeRestaurant");
 
 Auth::routes();

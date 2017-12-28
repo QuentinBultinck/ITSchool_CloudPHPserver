@@ -11,6 +11,8 @@ class Reservation extends Model
     }
 
     public function table(){
-        return $this->hasOne(Table::class);
+        return $this->belongTo(Table::class);
     }
+
+    protected $fillable = ["guests", "durationHours", "table_id", "user_id"];
 }

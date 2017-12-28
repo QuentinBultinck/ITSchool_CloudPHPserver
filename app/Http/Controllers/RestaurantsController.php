@@ -2,58 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateRestaurantRequest;
 use Illuminate\Http\Request;
 use App\Restaurant;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
+use App\Table;
 
 class RestaurantsController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $restaurants = Restaurant::all();
-        return view("restaurants.index")->with("restaurants", $restaurants);
+        // All actions in this controller are only available when logged in,
+        // not logged in => redirect to login login page
+        $this->middleware("auth");
     }
 
-    public function myRestaurant()
+    public function create()
     {
-        $restaurant = Restaurant::where("owner_id", Auth::user()->id);
+        $restaurant = Restaurant::where("owner_id", auth()->id())->first();
         if ($restaurant) {
-            return view("restaurants.myRestaurant");
+            return view("restaurants.myRestaurant")->with("restaurant", $restaurant);
         } else {
             return view("restaurants.create");
         }
     }
 
-    public function store(Request $request)
+    // Custom request checks validation
+    public function store(CreateRestaurantRequest $request)
     {
-        $this->validate(request(), [
-            "name" => "required|unique:restaurants,name|string|max:50",
-            "info" => "string|nullable|max:500",
-            "cuisine" => "required|string|max:50",
-            "openingTime" => "required|date_format:H:i",
-            "closingTime" => "required|date_format:H:i",
-            "city" => "required|string|max:100",
-            "country" => "required|string|max:100",
-            "street" => "required|string|max:100",
-            "houseNumber" => "required|numeric",
-//            "image" => "image"
-        ]);
+        $restaurant = new Restaurant($request->all());
+        $restaurant->owner_id = auth()->id();
+        $restaurant->save();
 
-        Restaurant::create([
-            "name" => request("name"),
-            "info" => request("info"),
-            "cuisine" => request("cuisine"),
-            "openingTime" => request("openingTime"),
-            "closingTime" => request("closingTime"),
-            "city" => request("city"),
-            "country" => request("country"),
-            "street" => request("street"),
-            "houseNumber" => request("houseNumber"),
-            "owner_id" => Auth::user()->id
-        ]);
+        // Add tables
+        $restaurant->setTables($request->tables);
 
-        return redirect("restaurants/myRestaurant");
+        return redirect()->route("myRestaurant");
     }
 
     public function edit($id)

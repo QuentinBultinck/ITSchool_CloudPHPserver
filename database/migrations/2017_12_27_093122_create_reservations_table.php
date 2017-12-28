@@ -17,6 +17,7 @@ class CreateReservationsTable extends Migration
             $table->increments('id');
             $table->integer("guests");
             $table->integer("durationInHours");
+            $table->dateTime("dateTime");
             $table->integer("table_id")->unsigned();
             $table->integer("user_id")->unsigned();
             $table->timestamps();

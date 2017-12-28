@@ -15,4 +15,7 @@ class Table extends Model
     {
         return $this->hasMany(Reservation::class);
     }
+
+    // These fields can be assigned11
+    protected $fillable = ["restaurant_id"];
 }

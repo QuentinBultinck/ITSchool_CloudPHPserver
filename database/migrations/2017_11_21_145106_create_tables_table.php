@@ -16,7 +16,6 @@ class CreateTablesTable extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("restaurant_id")->unsigned();
-            $table->integer("seats");
             $table->timestamps();
         });
 
