@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get("/", function () {
+    return redirect("home");
 });
+Route::get("/home", 'RestaurantsController@index')->name("home");
+Route::get("/restaurants/myRestaurant", 'RestaurantsController@myRestaurant')->name("restaurants.myRestaurant");
+Route::post("/restaurants/store", 'RestaurantsController@store')->name("restaurants.store");
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -7,6 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    public function restaurant()
+    {
+        return $this->hasOne(Restaurant::class);
+    }
+
     use Notifiable;
 
     /**
