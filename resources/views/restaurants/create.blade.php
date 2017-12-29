@@ -24,32 +24,55 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-md-6">
-                <label for="inputCuisine">Cuisine</label>
-                <input type="text" class="form-control" id="inputCuisine" value="{{ old('cuisine') }}" required placeholder="Fast-food, Chinese..."
-                       name="cuisine">
+            <div class="form-group col-md-3">
+                <label for="inputTag">Add tag</label>
+                <input type="text" class="form-control" id="inputTag" value="{{ old('tag0') }}" required
+                       placeholder="Picturesque"
+                       name="tag0">
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
+                <label for="inputTag1">Tag 2</label>
+                <input type="text" class="form-control" id="inputTag1" value="{{ old('tag1') }}" placeholder="Chinese"
+                       name="tag1">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputTag2">Tag 3</label>
+                <input type="text" class="form-control" id="inputTag2" value="{{ old('tag2') }}" placeholder="Steak"
+                       name="tag2">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputTag3">Tag 4</label>
+                <input type="text" class="form-control" id="inputTag3" value="{{ old('tag3') }}" placeholder="Peruvian"
+                       name="tag3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
                 <label for="inputOpeningTime">Opening Time</label>
-                <input type="time" class="form-control" id="inputCuisine" required name="openingTime" value="{{ old('openingTime') }}">
+                <input type="time" class="form-control" id="inputCuisine" required name="openingTime"
+                       value="{{ old('openingTime') }}">
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-4">
                 <label for="inputClosingTime">Closing Time</label>
-                <input type="time" class="form-control" id="inputClosingTime" value="{{ old('closingTime') }}" required name="closingTime">
+                <input type="time" class="form-control" id="inputClosingTime" value="{{ old('closingTime') }}" required
+                       name="closingTime">
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-4">
                 <label for="inputCuisine">Amount of Tables</label>
-                <input type="number" class="form-control" id="inputCuisine" min="1" max="50" value="{{ old('tables') ? old("tables") : 1 }}" required name="tables">
+                <input type="number" class="form-control" id="inputCuisine" min="1" max="50"
+                       value="{{ old('tables') ? old("tables") : 1 }}" required name="tables">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-8">
                 <label for="inputAddressStreet">Street</label>
-                <input type="text" class="form-control" id="inputAddressStreet" value="{{ old('street') }}" required name="street">
+                <input type="text" class="form-control" id="inputAddressStreet" value="{{ old('street') }}" required
+                       name="street">
             </div>
             <div class="form-group col-md-4">
                 <label for="inputHouseNumber">House Number</label>
-                <input type="text" class="form-control" id="inputHouseNumber" value="{{ old('houseNumber') }}" required name="houseNumber">
+                <input type="text" class="form-control" id="inputHouseNumber" value="{{ old('houseNumber') }}" required
+                       name="houseNumber">
             </div>
         </div>
         <div class="row">
@@ -60,7 +83,8 @@
             <div class="form-group col-md-6">
                 <label for="inputCountry">Country</label>
                 <select class="form-control custom-select" name="country" required id="inputCountry">
-                    <option value="0" label="Select a country … " disabled selected="selected">Select a country ...</option>
+                    <option value="0" label="Select a country … " disabled selected="selected">Select a country ...
+                    </option>
                     <optgroup id="country-optgroup-Africa" label="Africa">
                         <option value="DZ" label="Algeria">Algeria</option>
                         <option value="AO" label="Angola">Angola</option>
@@ -166,7 +190,8 @@
                         <option value="LC" label="Saint Lucia">Saint Lucia</option>
                         <option value="MF" label="Saint Martin">Saint Martin</option>
                         <option value="PM" label="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-                        <option value="VC" label="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                        <option value="VC" label="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines
+                        </option>
                         <option value="SR" label="Suriname">Suriname</option>
                         <option value="TT" label="Trinidad and Tobago">Trinidad and Tobago</option>
                         <option value="TC" label="Turks and Caicos Islands">Turks and Caicos Islands</option>
@@ -211,7 +236,9 @@
                         <option value="OM" label="Oman">Oman</option>
                         <option value="PK" label="Pakistan">Pakistan</option>
                         <option value="PS" label="Palestinian Territories">Palestinian Territories</option>
-                        <option value="YD" label="People's Democratic Republic of Yemen">People's Democratic Republic of Yemen</option>
+                        <option value="YD" label="People's Democratic Republic of Yemen">People's Democratic Republic of
+                            Yemen
+                        </option>
                         <option value="PH" label="Philippines">Philippines</option>
                         <option value="QA" label="Qatar">Qatar</option>
                         <option value="SA" label="Saudi Arabia">Saudi Arabia</option>
@@ -283,7 +310,9 @@
                         <option value="SE" label="Sweden">Sweden</option>
                         <option value="CH" label="Switzerland">Switzerland</option>
                         <option value="UA" label="Ukraine">Ukraine</option>
-                        <option value="SU" label="Union of Soviet Socialist Republics">Union of Soviet Socialist Republics</option>
+                        <option value="SU" label="Union of Soviet Socialist Republics">Union of Soviet Socialist
+                            Republics
+                        </option>
                         <option value="GB" label="United Kingdom">United Kingdom</option>
                         <option value="VA" label="Vatican City">Vatican City</option>
                         <option value="AX" label="Åland Islands">Åland Islands</option>
@@ -293,7 +322,8 @@
                         <option value="AQ" label="Antarctica">Antarctica</option>
                         <option value="AU" label="Australia">Australia</option>
                         <option value="BV" label="Bouvet Island">Bouvet Island</option>
-                        <option value="IO" label="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                        <option value="IO" label="British Indian Ocean Territory">British Indian Ocean Territory
+                        </option>
                         <option value="CX" label="Christmas Island">Christmas Island</option>
                         <option value="CC" label="Cocos [Keeling] Islands">Cocos [Keeling] Islands</option>
                         <option value="CK" label="Cook Islands">Cook Islands</option>
@@ -301,7 +331,8 @@
                         <option value="PF" label="French Polynesia">French Polynesia</option>
                         <option value="TF" label="French Southern Territories">French Southern Territories</option>
                         <option value="GU" label="Guam">Guam</option>
-                        <option value="HM" label="Heard Island and McDonald Islands">Heard Island and McDonald Islands</option>
+                        <option value="HM" label="Heard Island and McDonald Islands">Heard Island and McDonald Islands
+                        </option>
                         <option value="KI" label="Kiribati">Kiribati</option>
                         <option value="MH" label="Marshall Islands">Marshall Islands</option>
                         <option value="FM" label="Micronesia">Micronesia</option>
@@ -316,7 +347,9 @@
                         <option value="PN" label="Pitcairn Islands">Pitcairn Islands</option>
                         <option value="WS" label="Samoa">Samoa</option>
                         <option value="SB" label="Solomon Islands">Solomon Islands</option>
-                        <option value="GS" label="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+                        <option value="GS" label="South Georgia and the South Sandwich Islands">South Georgia and the
+                            South Sandwich Islands
+                        </option>
                         <option value="TK" label="Tokelau">Tokelau</option>
                         <option value="TO" label="Tonga">Tonga</option>
                         <option value="TV" label="Tuvalu">Tuvalu</option>
@@ -346,7 +379,7 @@
 @section("scripts")
     <script type="text/javascript">
         let country = "{{ old('country') }}";
-        if(country){
+        if (country) {
             $("#inputCountry").val(country);
         }
     </script>

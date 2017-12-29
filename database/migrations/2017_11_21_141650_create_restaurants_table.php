@@ -17,7 +17,6 @@ class CreateRestaurantsTable extends Migration
             $table->increments('id');
             $table->string("name")->unique();
             $table->text("info")->nullable();
-            $table->string("cuisine");
             $table->time("openingTime");
             $table->time("closingTime");
             $table->string("city");

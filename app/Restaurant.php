@@ -16,6 +16,11 @@ class Restaurant extends Model
         return $this->hasMany(Table::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
     private function addTables($quantity)
     {
         for ($i = 0; $i < $quantity; $i++) {
@@ -39,6 +44,21 @@ class Restaurant extends Model
         } else if ($currentQuantityTables > $quantity) {
             $this->deleteTables($currentQuantityTables - $quantity);
         }
+    }
+
+    public function addTags($tags)
+    {
+        foreach ($tags as $tag){
+            $tagFromDB = Tag::where("name", $tag)->first();
+            if(!empty($tagFromDB)){
+                $tagFromDB->attachToRestaurant($this->id);
+            } else if (!empty($tag)){
+                $createdTag = new Tag(["name" => $tag]);
+                $createdTag->save();
+                $createdTag->attachToRestaurant($this->id);
+            }
+        }
+
     }
 
     // These fields can be assigned11

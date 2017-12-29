@@ -36,6 +36,9 @@ class RestaurantsController extends Controller
         // Add tables
         $restaurant->setTables($request->tables);
 
+        // Add tags
+        $restaurant->addTags([$request->tag0, $request->tag1, $request->tag2, $request->tag3]);
+
         return redirect()->route("myRestaurant");
     }
 

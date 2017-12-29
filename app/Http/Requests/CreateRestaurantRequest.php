@@ -26,7 +26,10 @@ class CreateRestaurantRequest extends FormRequest
         return [
             "name" => "required|unique:restaurants,name|string|max:50",
             "info" => "string|nullable|max:500",
-            "cuisine" => "required|string|max:50",
+            "tag0" => "required|string|max:50",
+            "tag1" => "nullable|string|max:50",
+            "tag2" => "nullable|string|max:50",
+            "tag3" => "nullable|string|max:50",
             "tables" => "required|numeric|min:1|max:50",
             "openingTime" => "required|date_format:H:i",
             "closingTime" => "required|date_format:H:i",
