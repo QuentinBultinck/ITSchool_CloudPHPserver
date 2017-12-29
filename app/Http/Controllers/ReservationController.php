@@ -42,7 +42,21 @@ class ReservationController extends Controller
     public function myRestaurantReservations()
     {
         $restaurant = Restaurant::where("owner_id", auth()->id())->first();
-        $reservations = Reservation::with("reservedBy")->where("restaurant_id", $restaurant->id)->get();
-        return view("reservations.myRestaurantReservations")->with("reservations", $reservations);
+        if (empty($restaurant)) {
+            return redirect()->route("myRestaurant")->withErrors(["You have no restaurant"]);
+        } else {
+            $reservations = Reservation::with("reservedBy")->where("restaurant_id", $restaurant->id)->get();
+            return view("reservations.myRestaurantReservations")->with("reservations", $reservations);
+        }
+    }
+
+    public function delete(Reservation $reservation)
+    {
+        if (auth()->id() == $reservation->restaurant->owner_id) {
+            $reservation->delete();
+            return redirect()->route("myRestaurantReservations");
+        } else {
+            return redirect()->route("home");
+        }
     }
 }

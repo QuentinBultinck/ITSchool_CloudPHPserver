@@ -23,7 +23,11 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route("myReservations") }}">My reservations</a>
-                                <a class="dropdown-item" href="{{ route("myRestaurant") }}">My restaurant</a>
+                                <div class="dropdown-divider"></div>
+                                <h6 class="dropdown-header">For restaurateurs</h6>
+                                <a class="dropdown-item" href="{{ route("myRestaurant") }}">Restaurant</a>
+                                <a class="dropdown-item" href="{{ route("myRestaurantReservations") }}">Reservations</a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

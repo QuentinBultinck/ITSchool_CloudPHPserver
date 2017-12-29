@@ -20,6 +20,7 @@ Route::post("/search", 'HomeController@searchRestaurants')->name("search");
 Route::get("/reservation/myRestaurantReservations", "ReservationController@myRestaurantReservations")->name("myRestaurantReservations");
 Route::get("/reservation/myReservations", "ReservationController@myReservations")->name("myReservations");
 Route::post("/reservation/create", "ReservationController@create")->name("createReservation");
+Route::delete("/reservation/{reservation}", "ReservationController@delete")->name("deleteReservation");
 
 Route::get("/restaurants/myRestaurant", 'RestaurantsController@create')->name("myRestaurant");
 Route::get("/restaurants/{restaurant}", 'RestaurantsController@show')->name("showRestaurant");
