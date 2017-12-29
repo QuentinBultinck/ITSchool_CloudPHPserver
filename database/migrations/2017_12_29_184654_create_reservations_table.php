@@ -26,7 +26,7 @@ class CreateReservationsTable extends Migration
 
         Schema::table('reservations', function($table) {
             $table->foreign("restaurant_id")->references("id")->on("restaurants")->onDelete('cascade');
-            $table->foreign("user_id")->references("id")->on("users")->onDelete('cascade');
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 
@@ -37,8 +37,6 @@ class CreateReservationsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('reservations');
-        Schema::enableForeignKeyConstraints();
     }
 }

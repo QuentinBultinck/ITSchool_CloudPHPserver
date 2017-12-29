@@ -19,7 +19,7 @@ class CreateRestaurantTagTable extends Migration
             $table->primary(["restaurant_id", "tag_id"]);
         });
 
-        Schema::table('restaurant_tag', function($table) {
+        Schema::table('restaurant_tag', function (Blueprint $table) {
             $table->foreign("restaurant_id")->references("id")->on("restaurants")->onDelete('cascade');
             $table->foreign("tag_id")->references("id")->on("tags")->onDelete('cascade');
         });
@@ -32,7 +32,7 @@ class CreateRestaurantTagTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('restaurant_tag');
-        Schema::enableForeignKeyConstraints();
     }
 }
