@@ -18,6 +18,7 @@ Route::get("/home", 'HomeController@index')->name("home");
 Route::post("/search", 'HomeController@searchRestaurants')->name("search");
 
 Route::get("/restaurants/myRestaurant", 'RestaurantsController@create')->name("myRestaurant");
+Route::get("/restaurants/{restaurant}", 'RestaurantsController@show')->name("showRestaurant");
 Route::post("/restaurants/store", 'RestaurantsController@store')->name("storeRestaurant");
 Route::patch("/restaurants/update", 'RestaurantsController@update')->name("updateRestaurant");
 

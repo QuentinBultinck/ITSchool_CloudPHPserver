@@ -37,7 +37,6 @@ class CreateRestaurantRequest extends FormRequest
             "country" => "required|string|max:100",
             "street" => "required|string|max:100",
             "houseNumber" => "required|numeric",
-//            "image" => "image"
         ];
     }
 }

@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Register</h1>
+        <h1>Login</h1>
         <form method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
 

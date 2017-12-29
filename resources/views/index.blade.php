@@ -26,16 +26,17 @@
     <div class="card-deck">
         @foreach($restaurants as $restaurant)
             <div class="card bg-light">
-                {{--<img class="card-img-top" src="{{ asset("imgs/restaurants/" . $restaurant->name . ".jpg") }}" alt="{{ $restaurant->name }}">--}}
                 <div class="card-body">
                     <h2 class="card-title">{{ $restaurant->name }}</h2>
                     @foreach($restaurant->tags as $tag)
                         <span class="badge badge-info">{{ $tag->name }}</span>
                     @endforeach
                     <p class="card-text">{{ $restaurant->info }}</p>
+                    <p class="card-text">{{ $restaurant->country }} - {{ $restaurant->city }}</p>
+                    <p class="card-text">Opens {{ $restaurant->openingTime }} - Closes {{ $restaurant->closingTime }}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Make reservation</a>
+                    <a href="/restaurants/{{$restaurant->id}}" class="btn btn-primary">Make reservation</a>
                 </div>
             </div>
         @endforeach

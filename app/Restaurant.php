@@ -67,7 +67,7 @@ class Restaurant extends Model
         }
     }
 
-    private function addTag($tag)
+    private function addNewTag($tag)
     {
         $createdTag = new Tag(["name" => $tag]);
         $createdTag->save();
@@ -89,9 +89,9 @@ class Restaurant extends Model
     {
         $tagFromDB = Tag::where("name", $tag)->first();
         if (!empty($tagFromDB)) {
-            $tagFromDB->attachToRestaurant($this->id);
+            $this->tags()->attach($tagFromDB->id);
         } else if (!empty($tag)) {
-            $this->addTag($tag);
+            $this->addNewTag($tag);
         }
     }
 

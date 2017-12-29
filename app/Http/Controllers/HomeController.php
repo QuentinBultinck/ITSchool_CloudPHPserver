@@ -15,10 +15,14 @@ class HomeController extends Controller
 
     public function searchRestaurants(Request $request)
     {
+//        $tag = $request->tag;
         $restaurants = Restaurant::with("tags")
-            ->where("name", "LIKE", $request->name)
-            ->orWhere("city", "LIKE", $request->city)
+            ->where("name", "LIKE", "%". $request->name . "%")
+            ->orWhere("city", "LIKE", "%" . $request->city . "%")
+//            ->whereHas("tags", function ($q) use ($tag) {
+//                $q->where("name", "LIKE", "%" . $tag . "%")->with("tag");
+//            })
             ->get();
-        dd($restaurants);
+        return view("index")->with("restaurants", $restaurants);
     }
 }

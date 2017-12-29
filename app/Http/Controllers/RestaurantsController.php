@@ -14,7 +14,7 @@ class RestaurantsController extends Controller
     {
         // All actions in this controller are only available when logged in,
         // not logged in => redirect to login login page
-        $this->middleware("auth");
+        $this->middleware("auth", ['only' => ["create", "store", "update", "delete"]]);
     }
 
     public function create()
@@ -51,9 +51,10 @@ class RestaurantsController extends Controller
         $restaurantToUpdate->openingTime = $request->openingTime;
         $restaurantToUpdate->closingTime = $request->closingTime;
         $restaurantToUpdate->city = $request->city;
-        $restaurantToUpdate->country= $request->country;
+        $restaurantToUpdate->country = $request->country;
         $restaurantToUpdate->street = $request->street;
         $restaurantToUpdate->houseNumber = $request->houseNumber;
+        $restaurantToUpdate->save();
 
         // Set tables
         $restaurantToUpdate->setTables($request->tables);
@@ -62,6 +63,11 @@ class RestaurantsController extends Controller
         $restaurantToUpdate->updateTags([$request->tag0, $request->tag1, $request->tag2, $request->tag3]);
 
         return redirect()->route("myRestaurant");
+    }
+
+    public function show(Restaurant $restaurant)
+    {
+        return view("restaurants.show")->with("restaurant", $restaurant);
     }
 
     public function delete($id)
