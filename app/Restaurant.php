@@ -26,10 +26,10 @@ class Restaurant extends Model
     {
         $formatedTime = new Carbon($time);
         $minutes = $formatedTime->minute;
-        if($minutes < 10){
+        if ($minutes < 10) {
             $minutes .= 0;
         }
-        return $formatedTime->hour . ":" .  $minutes;
+        return $formatedTime->hour . ":" . $minutes;
     }
 
     public function getClosingTimeAttribute($closingTime)
@@ -41,7 +41,6 @@ class Restaurant extends Model
     {
         return $this->formatTimeFromDB($openingTime);
     }
-
 
     private function addTables($quantity)
     {
@@ -77,17 +76,12 @@ class Restaurant extends Model
 
     public function updateTags($tags)
     {
-        foreach ($tags as $tag) {
-            $alreadyLinked = false;
-            foreach (Restaurant::Tags() as $t) {
-                if ($tag == $t->name) {
-                    $alreadyLinked = true;
-                    break;
-                }
-            }
-            if (!$alreadyLinked) {
-                $this->setTag($tag);
-            }
+        //detach all current tags
+        $this->tags()->detach();
+
+        //attach all new tags
+        foreach ($tags as $tag){
+            $this->setTag($tag);
         }
     }
 

@@ -46,21 +46,20 @@ class RestaurantsController extends Controller
 
     public function update(UpdateRestaurantRequest $request)
     {
-        $updatedRestaurant = Restaurant::where("owner_id", auth()->id())->update([
-            "info" => $request->info,
-            "openingTime" => $request->openingTime,
-            "closingTime" => $request->closingTime,
-            "city" => $request->city,
-            "country" => $request->country,
-            "street" => $request->street,
-            "houseNumber" => $request->houseNumber,
-        ]);
+        $restaurantToUpdate = Restaurant::where("owner_id", auth()->id())->first();
+        $restaurantToUpdate->info = $request->info;
+        $restaurantToUpdate->openingTime = $request->openingTime;
+        $restaurantToUpdate->closingTime = $request->closingTime;
+        $restaurantToUpdate->city = $request->city;
+        $restaurantToUpdate->country= $request->country;
+        $restaurantToUpdate->street = $request->street;
+        $restaurantToUpdate->houseNumber = $request->houseNumber;
 
         // Set tables
-        $updatedRestaurant->setTables($request->tables);
+        $restaurantToUpdate->setTables($request->tables);
 
         // Update tags
-        $updatedRestaurant->updateTags();
+        $restaurantToUpdate->updateTags([$request->tag0, $request->tag1, $request->tag2, $request->tag3]);
 
         return redirect()->route("myRestaurant");
     }
