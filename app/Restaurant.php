@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
@@ -20,6 +21,27 @@ class Restaurant extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    private function formatTimeFromDB($time)
+    {
+        $formatedTime = new Carbon($time);
+        $minutes = $formatedTime->minute;
+        if($minutes < 10){
+            $minutes .= 0;
+        }
+        return $formatedTime->hour . ":" .  $minutes;
+    }
+
+    public function getClosingTimeAttribute($closingTime)
+    {
+        return $this->formatTimeFromDB($closingTime);
+    }
+
+    public function getOpeningTimeAttribute($openingTime)
+    {
+        return $this->formatTimeFromDB($openingTime);
+    }
+
 
     private function addTables($quantity)
     {
@@ -46,19 +68,44 @@ class Restaurant extends Model
         }
     }
 
-    public function addTags($tags)
+    private function addTag($tag)
     {
-        foreach ($tags as $tag){
-            $tagFromDB = Tag::where("name", $tag)->first();
-            if(!empty($tagFromDB)){
-                $tagFromDB->attachToRestaurant($this->id);
-            } else if (!empty($tag)){
-                $createdTag = new Tag(["name" => $tag]);
-                $createdTag->save();
-                $createdTag->attachToRestaurant($this->id);
+        $createdTag = new Tag(["name" => $tag]);
+        $createdTag->save();
+        $createdTag->attachToRestaurant($this->id);
+    }
+
+    public function updateTags($tags)
+    {
+        foreach ($tags as $tag) {
+            $alreadyLinked = false;
+            foreach (Restaurant::Tags() as $t) {
+                if ($tag == $t->name) {
+                    $alreadyLinked = true;
+                    break;
+                }
+            }
+            if (!$alreadyLinked) {
+                $this->setTag($tag);
             }
         }
+    }
 
+    private function setTag($tag)
+    {
+        $tagFromDB = Tag::where("name", $tag)->first();
+        if (!empty($tagFromDB)) {
+            $tagFromDB->attachToRestaurant($this->id);
+        } else if (!empty($tag)) {
+            $this->addTag($tag);
+        }
+    }
+
+    public function setTags($tags)
+    {
+        foreach ($tags as $tag) {
+            $this->setTag($tag);
+        }
     }
 
     // These fields can be assigned11

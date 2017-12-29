@@ -368,7 +368,7 @@
             </div>
         </div>
         -->
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

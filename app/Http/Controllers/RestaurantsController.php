@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRestaurantRequest;
+use App\Http\Requests\UpdateRestaurantRequest;
 use Illuminate\Http\Request;
 use App\Restaurant;
 use App\Table;
@@ -18,8 +19,9 @@ class RestaurantsController extends Controller
 
     public function create()
     {
-        $restaurant = Restaurant::where("owner_id", auth()->id())->first();
+        $restaurant = Restaurant::where("owner_id", auth()->id())->with("tags")->first();
         if ($restaurant) {
+            $restaurant->tables = Table::where("restaurant_id", $restaurant->id)->count();
             return view("restaurants.myRestaurant")->with("restaurant", $restaurant);
         } else {
             return view("restaurants.create");
@@ -37,19 +39,30 @@ class RestaurantsController extends Controller
         $restaurant->setTables($request->tables);
 
         // Add tags
-        $restaurant->addTags([$request->tag0, $request->tag1, $request->tag2, $request->tag3]);
+        $restaurant->setTags([$request->tag0, $request->tag1, $request->tag2, $request->tag3]);
 
         return redirect()->route("myRestaurant");
     }
 
-    public function edit($id)
+    public function update(UpdateRestaurantRequest $request)
     {
-        // GET pre filled form with values of his restaurant able to change
-    }
+        $updatedRestaurant = Restaurant::where("owner_id", auth()->id())->update([
+            "info" => $request->info,
+            "openingTime" => $request->openingTime,
+            "closingTime" => $request->closingTime,
+            "city" => $request->city,
+            "country" => $request->country,
+            "street" => $request->street,
+            "houseNumber" => $request->houseNumber,
+        ]);
 
-    public function update(Request $request, $id)
-    {
-        // PATCH the changed restaurant
+        // Set tables
+        $updatedRestaurant->setTables($request->tables);
+
+        // Update tags
+        $updatedRestaurant->updateTags();
+
+        return redirect()->route("myRestaurant");
     }
 
     public function delete($id)
