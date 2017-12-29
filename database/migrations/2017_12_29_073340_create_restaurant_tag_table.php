@@ -33,5 +33,6 @@ class CreateRestaurantTagTable extends Migration
     public function down()
     {
         Schema::dropIfExists('restaurant_tag');
+        Schema::enableForeignKeyConstraints();
     }
 }
