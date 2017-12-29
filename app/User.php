@@ -12,6 +12,11 @@ class User extends Authenticatable
         return $this->hasOne(Restaurant::class);
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
+
     use Notifiable;
 
     /**

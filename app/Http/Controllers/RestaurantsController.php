@@ -6,7 +6,6 @@ use App\Http\Requests\CreateRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
 use Illuminate\Http\Request;
 use App\Restaurant;
-use App\Table;
 
 class RestaurantsController extends Controller
 {
@@ -21,7 +20,6 @@ class RestaurantsController extends Controller
     {
         $restaurant = Restaurant::where("owner_id", auth()->id())->with("tags")->first();
         if ($restaurant) {
-            $restaurant->tables = Table::where("restaurant_id", $restaurant->id)->count();
             return view("restaurants.myRestaurant")->with("restaurant", $restaurant);
         } else {
             return view("restaurants.create");
@@ -34,9 +32,6 @@ class RestaurantsController extends Controller
         $restaurant = new Restaurant($request->all());
         $restaurant->owner_id = auth()->id();
         $restaurant->save();
-
-        // Add tables
-        $restaurant->setTables($request->tables);
 
         // Add tags
         $restaurant->setTags([$request->tag0, $request->tag1, $request->tag2, $request->tag3]);
@@ -54,10 +49,8 @@ class RestaurantsController extends Controller
         $restaurantToUpdate->country = $request->country;
         $restaurantToUpdate->street = $request->street;
         $restaurantToUpdate->houseNumber = $request->houseNumber;
+        $restaurantToUpdate->tables = $request->tables;
         $restaurantToUpdate->save();
-
-        // Set tables
-        $restaurantToUpdate->setTables($request->tables);
 
         // Update tags
         $restaurantToUpdate->updateTags([$request->tag0, $request->tag1, $request->tag2, $request->tag3]);

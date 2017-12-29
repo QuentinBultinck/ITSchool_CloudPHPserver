@@ -348,7 +348,9 @@
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
             <div class="form-group ml-auto">
-                <a href="/restaurants/{{ $restaurant->id }}" class="btn btn-primary">View my restaurant <i
+                <a href="{{ route("myRestaurantReservations") }}" class="btn btn-primary">View reservations  <i
+                            class="fa fa-book"></i></a>
+                <a href="/restaurants/{{ $restaurant->id }}" class="btn btn-primary">View my restaurant  <i
                             class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>

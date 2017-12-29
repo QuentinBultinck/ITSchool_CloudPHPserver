@@ -17,6 +17,10 @@ Route::get("/", function () {
 Route::get("/home", 'HomeController@index')->name("home");
 Route::post("/search", 'HomeController@searchRestaurants')->name("search");
 
+Route::get("/reservation/myRestaurantReservations", "ReservationController@myRestaurantReservations")->name("myRestaurantReservations");
+Route::get("/reservation/myReservations", "ReservationController@myReservations")->name("myReservations");
+Route::post("/reservation/create", "ReservationController@create")->name("createReservation");
+
 Route::get("/restaurants/myRestaurant", 'RestaurantsController@create')->name("myRestaurant");
 Route::get("/restaurants/{restaurant}", 'RestaurantsController@show')->name("showRestaurant");
 Route::post("/restaurants/store", 'RestaurantsController@store')->name("storeRestaurant");

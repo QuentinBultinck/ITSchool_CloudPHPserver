@@ -8,7 +8,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item text-light"><a class="nav-link" href="{{ route("home") }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="{{ route("home") }}">Home</a></li>
             </ul>
             @guest
                 <ul class="navbar-nav ml-auto">
@@ -22,6 +22,7 @@
                                 {{ auth()->user()->name }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route("myReservations") }}">My reservations</a>
                                 <a class="dropdown-item" href="{{ route("myRestaurant") }}">My restaurant</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

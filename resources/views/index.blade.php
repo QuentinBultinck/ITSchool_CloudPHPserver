@@ -32,7 +32,7 @@
                         <span class="badge badge-info">{{ $tag->name }}</span>
                     @endforeach
                     <p class="card-text">{{ $restaurant->info }}</p>
-                    <p class="card-text">{{ $restaurant->country }} - {{ $restaurant->city }}</p>
+                    <p class="card-text">{{ $restaurant->country }}, {{ $restaurant->city }}</p>
                     <p class="card-text">Opens {{ $restaurant->openingTime }} - Closes {{ $restaurant->closingTime }}</p>
                 </div>
                 <div class="card-footer">

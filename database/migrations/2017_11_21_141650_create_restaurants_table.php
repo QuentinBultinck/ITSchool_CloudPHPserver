@@ -23,6 +23,7 @@ class CreateRestaurantsTable extends Migration
             $table->string("country");
             $table->string("street");
             $table->integer("houseNumber");
+            $table->integer("tables");
             $table->integer("owner_id")->unsigned();
             $table->timestamps();
         });

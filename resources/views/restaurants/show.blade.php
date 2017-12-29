@@ -29,22 +29,23 @@
                         <div class="row">
                             <div class="col">
                                 <h2>Place reservation</h2>
-                                <form action="{{ route("home") }}" method="post">
+                                <form action="{{ route("createReservation") }}" method="post">
                                     {{ csrf_field() }}
+                                    @include("partials.errors")
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="inputDate">Pick date</label>
-                                            <input type="text" class="datePicker form-control" name="date" placeholder="Pick your date"
+                                            <input type="text" class="datePicker form-control" required name="date" placeholder="Pick your date"
                                                    id="inputDate" value="{{ old("date") }}">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputTime">Time</label>
-                                            <input type="time" class="form-control" name="time" id="inputTime"
+                                            <input type="time" class="form-control" name="time" required id="inputTime"
                                                    value="{{ old("time") }}">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputPeople">People</label>
-                                            <input type="number" min="1" class="form-control" name="people"
+                                            <input type="number" min="1" class="form-control" required name="people"
                                                    id="inputPeople" value="{{ old('people') ? old("people") : 2 }}">
                                         </div>
                                     </div>
@@ -56,6 +57,7 @@
                                                       name="extraInfo">{{ old('extraInfo') }}</textarea>
                                         </div>
                                     </div>
+                                    <input name="restaurant_id" value="{{ $restaurant->id }}" type="hidden">
                                     <div class="row justify-content-center">
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary">Submit</button>
