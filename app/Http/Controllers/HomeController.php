@@ -3,26 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Restaurant;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('home');
+        $restaurants = Restaurant::with("tags")->get();
+        return view("index")->with("restaurants", $restaurants);
+    }
+
+    public function searchRestaurants(Request $request)
+    {
+//        $tag = $request->tag;
+        $restaurants = Restaurant::with("tags")
+            ->where("name", "=", $request->name)
+            ->orWhere("city", "=", $request->city)
+//            ->whereHas("tags", function ($q) use ($tag) {
+//                $q->where("name", "LIKE", "%" . $tag . "%")->with("tag");
+//            })
+            ->get();
+        return view("index")->with("restaurants", $restaurants);
     }
 }
