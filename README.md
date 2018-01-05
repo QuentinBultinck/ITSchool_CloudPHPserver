@@ -1,5 +1,7 @@
 # Cloud Development Project
 
+Live version available on: http://findyourrestaurant.azurewebsites.net/
+
 ## Requirements
 - PHP
 - Composer
