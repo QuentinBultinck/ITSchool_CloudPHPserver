@@ -3,7 +3,7 @@
 ## How to setup
 1. `composer install`
 2. `npm install`
-3. Mac/Linux: php `vendor/bin/homestead make` || Windows: `vendor\\bin\\homestead make`
+3. Mac/Linux: `php vendor/bin/homestead make` || Windows: `vendor\\bin\\homestead make`
 4. `vagrant up --provision`
 5. edit hosts file: `192.168.10.10 homestead.test`
 
