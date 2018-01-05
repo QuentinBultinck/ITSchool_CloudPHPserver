@@ -11,12 +11,14 @@ Live version available on: http://findyourrestaurant.azurewebsites.net/
 
 ## How to setup
 0. First of all place this in your .env file which should be at the root of the project:
-`DB_CONNECTION=mysql
+```
+DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=33060
 DB_DATABASE=restaurantDB
 DB_USERNAME=homestead
-DB_PASSWORD=secret`
+DB_PASSWORD=secret
+```
 1. `composer install`
 2. `npm install`
 3. Mac/Linux: `php vendor/bin/homestead make` || Windows: `vendor\\bin\\homestead make`
