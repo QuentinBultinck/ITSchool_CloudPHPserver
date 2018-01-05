@@ -36,7 +36,7 @@ Dummy user account:
 
 **email:** restaurantLover@hotmail.com
 
-**password** undercover
+**password:** undercover
 
 ## Remove your vagrant box
 1. `vagrant global-status`
