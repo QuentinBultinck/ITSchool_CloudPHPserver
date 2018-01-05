@@ -1,14 +1,26 @@
-# Cloud_Development_Restaurant
-Cloud Development Project
+# Cloud Development Project
 
-# How to setup
-- composer install 
-- npm install
-- Mac/Linux: php vendor/bin/homestead make || Windows: vendor\\bin\\homestead make
-- vagrant up --provision
-- edit hosts file: 192.168.10.10 homestead.test
-Done
+## Requirements
+- PHP
+- Composer
+- Npm / node
+- Vagrant
+- Homestead maybe not???
 
-# Remove your vagrant box
-- vagrant global-status
-- vagrant destroy [id]
+## How to setup
+1. `composer install`
+2. `npm install`
+3. Mac/Linux: `php vendor/bin/homestead make` || Windows: `vendor\\bin\\homestead make`
+4. `vagrant up --provision`
+5. edit hosts file: `192.168.10.10 homestead.test`
+6. Open a connection to your freshly made vagrant box, for example Putty. 
+    Default login and password are both 'vagrant'. 
+7. Connect to mysql: `mysql -u homestead -p`  
+8. `CREATE DATABASE restaurantDB;`
+9. To exit: `\q`
+10. Now back at the root of the project: `php artisan migrate --seed`
+11. surf to homestead.test
+
+## Remove your vagrant box
+1. `vagrant global-status`
+2. `vagrant destroy [id]`
