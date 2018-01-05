@@ -32,6 +32,12 @@ DB_PASSWORD=secret
 10. Now back at the root of the project: `php artisan migrate --seed`
 11. surf to homestead.test
 
+Dummy user account:
+
+**email:** restaurantLover@hotmail.com
+
+**password** undercover
+
 ## Remove your vagrant box
 1. `vagrant global-status`
 2. `vagrant destroy [id]`
