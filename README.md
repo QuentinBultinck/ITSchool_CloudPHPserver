@@ -7,7 +7,7 @@ Live version available on: http://findyourrestaurant.azurewebsites.net/
 - Composer
 - Npm / node
 - Vagrant
-- Homestead maybe not???
+- Homestead
 
 ## How to setup
 - First of all place this in your .env file which should be at the root of the project:
@@ -22,7 +22,7 @@ DB_PASSWORD=secret
 - `composer install`
 - `npm install`
 - Mac/Linux: `php vendor/bin/homestead make` || Windows: `vendor\\bin\\homestead make`
-- In the new file at the root of the project (Homestead.yaml), change:
+- In the new file at the root of the project (**Homestead.yaml**), change:
 ```
 databases:
     - homestead
